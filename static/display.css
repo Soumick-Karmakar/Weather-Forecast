@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #274C77;
+    color: whitesmoke;
+    font-variant: small-caps;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 5px;
+    background-color: #274C77;
+    color: #E7ECEF;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.button button:hover{
+    background-color: #A3CEF1;
+    color: #274C77;
+    transition: 0.5s;
+}
+
+body 
+{
+    align-items: center;
+    background: linear-gradient(to right, #6096BA, #A3CEF1, #E7ECEF, #A3CEF1, #6096BA); 
+}
+
+.table_cls {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  /* Style the header row */
+  .table_header {
+    background-color: #274C77;
+    font-weight: bold;
+  }
+  
+  .table_header th {
+    border: 1px solid #000; /* Add borders to table header cells */
+    padding: 8px;
+    text-align: center;
+    color: #E7ECEF;
+  }
+  
+  /* Style the data rows */
+  .table_data td {
+    border: 1px solid #000; /* Add borders to table data cells */
+    padding: 8px;
+    text-align: center;
+  }
+  
