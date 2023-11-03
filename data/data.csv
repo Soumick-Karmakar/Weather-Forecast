@@ -1,0 +1,2 @@
+aqi,city_name,clouds,country_code,datetime,gust,h_angle,ob_time,pod,precip,rh,slp,snow,state_code,station,sunrise,sunset,temp,timezone,ts,vis,wind_cdir,wind_cdir_full,wind_dir
+158,Kolkata,0,IN,2023-11-03:02,0,-60,2023-11-03 02:30,d,0,78,1014,0,28,VECC,00:11,11:27,27,Asia/Kolkata,1698978600,16,NNE,north-northeast,20
