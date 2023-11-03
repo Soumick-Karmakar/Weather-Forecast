@@ -1,0 +1,1 @@
+https://api.weatherbit.io/v2.0/current?city=Kolkata&key=38140cf0a4304397a1a1273a27fad080
