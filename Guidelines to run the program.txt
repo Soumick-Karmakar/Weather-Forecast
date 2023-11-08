@@ -1,0 +1,12 @@
+>>Step 1: Open terminal and run the command:
+python app.py
+Function: This will run the python script file and make the API call. This will process the data and store in CSV file.
+
+
+>>Step 2: Open the browser and hit the link: 
+http://127.0.0.1:5500/
+Function: This will open the HTML file.
+
+
+>>Step 3: Click on the button "Get my data":
+Function: This will fetch data from CSV file and display below the button in the table format.
