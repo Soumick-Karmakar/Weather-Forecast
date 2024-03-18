@@ -1,52 +1,179 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment</title>
     <link rel="stylesheet" href="{{url_for('static',filename='display.css')}}">
 </head>
+
 <body>
     <div class="header">
         <h1>AMP Assignment</h1>
     </div>
     <br>
-    <form method="get" action="/get_data">
+    <form method="get" action="/API_call">
         <div class="button">
             <button class="submit" type="submit"><b>Get My Data</b></button>
         </div>
     </form>
+    {% if (data1 and data2) %}
+    <div class="table_cls" align="center">
+        <table>
+            <caption>
+                <h2>Weather</h2>
+            </caption>
+            <thead class="table_header">
+                <tr>
+                    <th scope="col">AQI</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Date:Time</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Clouds</th>
+                    <th scope="col">Snowfall</th>
+                </tr>
+            </thead>
+            <tbody class="table_data">
+                {% for search in data1 %}
+                <tr align="center">
+                    <td> {{search['aqi']}} </td>
+                    <td> {{search['city_name']}} </td>
+                    <td> {{search['datetime']}} </td>
+                    <td> {{search['temp']}} </td>
+                    <td> {{search['clouds']}} </td>
+                    <td> {{search['snow']}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table>
+            <caption>
+                <h3>City</h3>
+            </caption>
+            <thead class="table_header">
+                <tr>
+                    <th scope="col">City</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Population</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Reliabilty</th>
+                </tr>
+            </thead>
+            <tbody class="table_data">
+                {% for search in data2 %}
+                <tr align="center">
+                    <td> {{search['city']}} </td>
+                    <td> {{search['year']}} </td>
+                    <td> {{search['value']}} </td>
+                    <td> {{search['sex']}} </td>
+                    <td> {{search['reliabilty']}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <br>
-    <br>
-    {% if data %}
-    <table class="table_cls" align="center">
-        <thead class="table_header">
-            <tr>
-                <th scope="col">AQI</th>
-                <th scope="col">City</th>
-                <th scope="col">Date:Time</th>
-                <th scope="col">Temperature</th>
-                <th scope="col">Clouds</th>
-                <th scope="col">Snowfall</th>
-                <th scope="col">Sunrise</th>
-                <th scope="col">Sunset</th>
-            </tr>
-        </thead>
-        <tbody class="table_data">
-            {% for search in data[1:] %}
-            <tr align="center">
-                <td> {{search[data[0].index('aqi')]}} </td>
-                <td> {{search[data[0].index('city_name')]}} </td>
-                <td> {{search[data[0].index('datetime')]}} </td>
-                <td> {{search[data[0].index('temp')]}} </td>
-                <td> {{search[data[0].index('clouds')]}} </td>
-                <td> {{search[data[0].index('snow')]}} </td>
-                <td> {{search[data[0].index('sunrise')]}} </td>
-                <td> {{search[data[0].index('sunset')]}} </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <form method="get" action="/merge">
+        <div class="button">
+            <button class="submit"><b>Merge City Details</b></button>
+        </div>
+        <br>
+    </form>
     {% endif %}
+    {% if data3 %}
+    <form>
+        <div class="table_cls table_merge" align="center">
+            <table id="merge_table">
+                <caption>
+                    <h2>Merged Data</h2>
+                </caption>
+                <thead class="table_header">
+                    <tr>
+                        <th scope="col">AQI</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Date:Time</th>
+                        <th scope="col">Temperature</th>
+                        <th scope="col">Clouds</th>
+                        <th scope="col">Snowfall</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Population</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">Reliabilty</th>
+                    </tr>
+                </thead>
+                <tbody class="table_data">
+                    {% for search in data3 %}
+                    <tr align="center">
+                        <td contenteditable="true"> {{search['aqi']}} </td>
+                        <td contenteditable="true"> {{search['city_name']}} </td>
+                        <td contenteditable="true"> {{search['datetime']}} </td>
+                        <td contenteditable="true"> {{search['temp']}} </td>
+                        <td contenteditable="true"> {{search['clouds']}} </td>
+                        <td contenteditable="true"> {{search['snow']}} </td>
+                        <td contenteditable="true"> {{search['year']}} </td>
+                        <td contenteditable="true"> {{search['value']}} </td>
+                        <td contenteditable="true"> {{search['sex']}} </td>
+                        <td contenteditable="true"> {{search['reliabilty']}} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="button">
+            <button id="save" class="submit"><b>Save</b></button>
+        </div>
+    </form>
+    {% endif %}
+    <script>
+        document.getElementById("save").addEventListener("click", function () {
+            event.preventDefault();
+            var table = document.getElementById("merge_table");
+            var data = [];
+            for (var i = 1; i < table.rows.length; i++) {
+                var row = table.rows[i];
+                var rowData = {
+                    "aqi": row.cells[0].innerText,
+                    "city_name": row.cells[1].innerText,
+                    "datetime": row.cells[2].innerText,
+                    "temp": row.cells[3].innerText,
+                    "clouds": row.cells[4].innerText,
+                    "snow": row.cells[5].innerText,
+                    "year": row.cells[6].innerText,
+                    "value": row.cells[7].innerText,
+                    "sex": row.cells[8].innerText,
+                    "reliabilty": row.cells[9].innerText
+                };
+                data.push(rowData);
+            }
+            sendData(data);
+        });
+
+        function sendData(data) {
+            formData = JSON.stringify(data);
+            fetch('http://localhost:5000/modified', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        alert('Network response was not ok');
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(formData => {
+                    alert('Data submitted successfully');
+                    console.log('Data submitted successfully:', formData);
+                })
+                .catch(error => {
+                    alert('Error submitting the entered data');
+                    console.error('Error submitting data:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>
