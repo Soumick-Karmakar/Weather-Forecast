@@ -1,12 +1,26 @@
->>Step 1: Open terminal and run the command:
+>>Step 1: Open the terminal and run the command:
 python app.py
-Function: This will run the python script file and make the API call. This will process the data and store in CSV file.
+Function: This will run the Flask Application in a particular port.
 
 
->>Step 2: Open the browser and hit the link: 
+>>Step 2: Open another terminal and run the command:
+node index.js
+Function: This will run the NodeAPI in a different port.
+
+
+>>Step 3: Open the browser and hit the link: 
 http://127.0.0.1:5500/
-Function: This will open the HTML file.
+Function: This will open the HTML file, providing a top header and a "Get my data" button below.
 
 
->>Step 3: Click on the button "Get my data":
-Function: This will fetch data from CSV file and display below the button in the table format.
+>>Step 4: Click on the button "Get my data":
+Function: This will fetch data from Weather and City APIs and then store it in MongoDB collections and display the data below the button in the table format. This will also provide a "Merge" button. 
+
+
+>>Step 5: Click on the button "Merge":
+Function: This will merge the data from two collections (Weather and City) and store it in a 3rd collection. The data from this 3rd collection will be displayed in an editable table below this button along with a "Save" button.
+
+
+>>Step 6: Click on the button "Save":
+Function: This will send the edited data to the NodeAPI which is running at localhost:5000. The NodeAPI will accept the data and save the edited data into a 4th collection.
+
